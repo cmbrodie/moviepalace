@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>Movies</h2>
+<ul>
+    {% for movie in movies %}
+    <li>
+        #{{forloop.counter}} <a href={% url movie.0 %}>{{movie.0 | title}}</a> was released in {{movie.1}}
+    </li>
+    {% endfor %}
+</ul>
+{% verbatim %}
+Django uses mustaches braces to render variables: {{ is_scary }}.
+{% endverbatim %}
+<h2>Goodies</h2>
+<p>
+    The first element is:
+    {{confectionaries|first|first}}
+</p>
+<p>
+    Heres all our items:
+    {{confectionaries|join:','}}
+
+</p>
+
+<ul>
+    {% for goodie in confectionaries %}
+    <li>{{goodie.0}} &mdash; ${{goodie.1}}</li>
+    {% empty %}
+    <li><i>There are no more goodies available</i></li>
+    {% endfor %}
+</ul>
+<p>Copyright 2012-{% now "Y" %}</p>
+{% endblock content %}
